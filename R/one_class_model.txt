@@ -1,0 +1,94 @@
+# N = number of observations; indexed j
+# n = number of independent subjects; indexed i
+# D = number of dimensions; indexed d
+# P = number of points in transformation of time; indexed p
+#
+# M[j,1:P] = the time transformation of the time at which measurement y[j] was taken
+
+# y[j] = the jth observation
+# subj[j] = the individual on whom observation y[j] is made
+# dimension[j] = the dimension (subscale) about which observation y[j] is made
+
+# FIXED.BETA.MEANS[d,p]
+# FIXED.BETA.SDS[d,p]
+# IDENTITY[1:(P*D), 1:(P*D)]
+# ZERO.VECTOR[1:(P*D)]
+
+#N.c
+#subj.c[j]
+#M.c[j,1:P]
+#M.SLOPE.c[j,1:P]
+#censored[j]
+
+model{
+
+for (d in 1:D)
+{
+    for (p in 1:P)
+    {
+        fixed.beta[P*(d-1)+p,1] ~ dnorm(FIXED.BETA.MEANS[d,p], FIXED.BETA.SDS[d,p]^-2)
+    }
+}
+
+
+##----------------------------##
+##-- THE INDIVIDUAL EFFECTS --##
+##----------------------------##
+
+
+individual.omega[1:(P*D), 1:(P*D),1] ~ dwish(IDENTITY[1:(P*D), 1:(P*D)], (P*D))
+
+#pick a set of betas for everybody
+for (i in 1:n)
+{
+    individual.beta[i,1:(P*D)] ~ dmnorm(ZERO.VECTOR[1:(P*D)], individual.omega[1:(P*D), 1:(P*D),1])
+}
+
+
+##---------------------##
+##-- THE ERROR TERMS --##
+##---------------------##
+
+for (d in 1:D)
+{
+    tau.epsilon[d] ~ dgamma(0.001,0.001)
+    sigma.epsilon[d] <- tau.epsilon[d]^-0.5
+}
+
+##------------------##
+##-- THE OUTCOMES --##
+##------------------##
+
+for (j in 1:N)
+{
+    s[j] <- sum(M[j,1:P] * (fixed.beta[P*(dimension[j]-1)+1:P,1] + individual.beta[subj[j],P*(dimension[j]-1)+1:P]))
+
+    y[j] ~ dnorm(s[j], tau.epsilon[dimension[j]])
+}
+
+##---------------##
+##-- CENSORING --##
+##---------------##
+
+
+log.odds.intercept ~ dnorm(0, 0.001)
+for (d in 1:D)
+{
+    gamma[d] ~ dnorm(0, 0.001)
+    alpha[d] ~ dnorm(0, 0.001)
+}
+
+for (j in 1:N.c)
+{
+    for (d in 1:D)
+    {
+        s.c[j,d] <- sum(M.c[j,1:P] * (fixed.beta[P*(d-1)+1:P,1] + individual.beta[subj.c[j],P*(d-1)+1:P]))
+        slope.c[j,d] <- sum(M.SLOPE.c[j,1:P] * (fixed.beta[P*(d-1)+1:P,1] + individual.beta[subj.c[j],P*(d-1)+1:P]))
+    }
+
+    log.odds.censored[j] <- log.odds.intercept + sum(gamma[1:D] * s.c[j,1:D]) + sum(alpha[1:D] * slope.c[j,1:D])
+
+    censored[j] ~ dbern(exp(log.odds.censored[j])/(1+exp(log.odds.censored[j])))
+}
+
+}
