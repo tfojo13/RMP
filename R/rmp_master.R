@@ -9,6 +9,7 @@
 #'@param time.transformation One of 'linear', 'linear.spline'
 #'
 #'@export
+#' @importFrom R2jags jags
 create.measurement.predictor <- function(dataset,
                                          num.latent.classes=1,
                                          time.transformation,
@@ -240,7 +241,7 @@ predict.event <- function(rmp, event,
 #
 
 #'@title exported for testing
-#'@exportlo
+#'@export
 random.fixed.beta.and.sd.generator <- function(dataset, d.to.test, P, tt.func)
 {
     obs = list() #indexed[[id]][[test]] - with elements $vals $times

@@ -112,6 +112,7 @@ combine.MVGs <- function(mvgs, probabilities=rep(1/length(mvgs),length(mvgs)))
                sigma=expected.var + combined.expected.sq - combined.mu %*% t(combined.mu))
 }
 
+#' @importFrom mvtnorm rmvnorm
 r.mvg <- function(n, mvg)
 {
     rmvnorm(n, mean=as.vector(mvg$mu), sigma=mvg$sigma, method='chol')

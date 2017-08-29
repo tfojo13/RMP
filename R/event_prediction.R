@@ -6,11 +6,13 @@
 #'@param event.name Specifying a name allows for more than one event to be predicted
 #'
 #'@export
+#' @importFrom stats as.formula binomial cov dnorm glm
+#' @importFrom stats optimize pnorm qnorm rnorm runif sd
 create.event.predictor <- function(rmp,
                                    dataset,
                                    covariates,
                                    event.name='event',
-                                   verbose=F)
+                                   verbose=FALSE)
 {
     num.iterations = get.num.iterations(rmp)
     N = dim(dataset)[1]
@@ -122,8 +124,9 @@ make.event.predictions <- function(rmp,
     matrix(logit.means, ncol=length(predict.times))
 }
 
-library(logitnorm)
-SNORMS = rnorm(10000)
+# library(logitnorm)
+# SNORMS = rnorm(10000)
+#' @importFrom logitnorm momentsLogitnorm
 mean.logitnorm <- function(mu, sigma.sq)
 {
     #    log.odds = saved.norms * sqrt(sigma.sq) + mu

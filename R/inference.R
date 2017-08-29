@@ -303,6 +303,7 @@ get.all.class.probabilities <- function(dm, observations, observed.times, covari
 
 #if the observations are fewer than the num obs in the obs.dist,
 #the given observations are presumed to be the first length(obsevations) observations on the distribution
+#' @importFrom mvtnorm dmvnorm
 get.class.probabilities <- function(iteration, dm, observations, times, M, covariates, all.obs.dists=NULL)
 {
     if (dm$K==1)
