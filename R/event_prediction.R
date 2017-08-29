@@ -125,7 +125,7 @@ make.event.predictions <- function(rmp,
 }
 
 # library(logitnorm)
-# SNORMS = rnorm(10000)
+# 
 #' @importFrom logitnorm momentsLogitnorm
 mean.logitnorm <- function(mu, sigma.sq)
 {
@@ -136,6 +136,7 @@ mean.logitnorm <- function(mu, sigma.sq)
     },error=function(e){
 #        print('there was an error using momentsLogitnorm. Using simulation to get mean of logitNorm distribution.')
 #        norms = rnorm(10000, mu, sigma.sq)
+        SNORMS = rnorm(10000)
         norms = SNORMS * sqrt(sigma.sq) + mu
         expits = exp(norms) / (1+exp(norms))
         mean(expits)

@@ -42,7 +42,7 @@ create.measurement.predictor <- function(dataset,
     names(test.to.d) = d.to.test
     dimension = test.to.d[dataset$test]
 
-    K = num.classes
+    K = num.latent.classes
 
     if (is.null(fixed.covariate.names))
         n.fixed = 1
