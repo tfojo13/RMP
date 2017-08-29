@@ -2,10 +2,13 @@ Package: RMP
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
-Authors@R: c(person(given = "John",
-           family = "Muschelli",
+Authors@R: c(person(given = "A. Todd",
+           family = "Fojo",
            role = "cre",
-           email = "muschellij2@gmail.com")
+           email = "Anthony.Fojo@jhmi.edu"), 
+           person(given = "John",
+           family = "Muschelli",
+           role = "ctb"))
 Maintainer: Todd Fojo <Anthony.Fojo@jhmi.edu>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
