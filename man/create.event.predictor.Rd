@@ -5,7 +5,7 @@
 \title{Set up a Predictor of Binary Events Based on Repeated Measurements}
 \usage{
 create.event.predictor(rmp, dataset, covariates, event.name = "event",
-  verbose = F)
+  verbose = FALSE)
 }
 \arguments{
 \item{rmp}{The results of a call to make.measurement.predictor}
