@@ -13,4 +13,12 @@ create.event.predictor(rmp, dataset, covariates, event.name = "event",
 \item{dataset}{A data frame with rows $time, $event (1 or 0), $id}
 
 \item{event.name}{Specifying a name allows for more than one event to be predicted}
+
+\item{verbose}{Whether to print status updates}
+}
+\value{
+The RMP object with the capacity to make predictions of events
+}
+\description{
+Set up a Predictor of Binary Events Based on Repeated Measurements
 }

@@ -1,13 +1,13 @@
 Package: RMP
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Depends: R2jags, mvtnorm
+Title: Fits Bayesian models on repeated measures of multiple symptoms
+Version: 1.0
+Author: Anthony Todd Fojo
+Maintainer: Anthony Todd Fojo <Anthony.Fojo@jhmi.edu>
+Description: Uses MCMC to fit multilevel models on multiple symptom scales. The fitted model results can be used to make predictions based on new data not used to train the model
+License: GPL-2
+Depends: R2jags, mvtnorm, logitnorm
+Imports: stats
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1

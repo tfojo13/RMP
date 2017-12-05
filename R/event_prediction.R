@@ -1,9 +1,12 @@
 
-#'@title Set up a Predictor of Binary Events Based on Repeated Measurements
+#'Set up a Predictor of Binary Events Based on Repeated Measurements
 #'
 #'@param rmp The results of a call to make.measurement.predictor
 #'@param dataset A data frame with rows $time, $event (1 or 0), $id
 #'@param event.name Specifying a name allows for more than one event to be predicted
+#'@param verbose Whether to print status updates
+#'
+#'@return The RMP object with the capacity to make predictions of events
 #'
 #'@export
 create.event.predictor <- function(rmp,
@@ -122,7 +125,6 @@ make.event.predictions <- function(rmp,
     matrix(logit.means, ncol=length(predict.times))
 }
 
-library(logitnorm)
 SNORMS = rnorm(10000)
 mean.logitnorm <- function(mu, sigma.sq)
 {

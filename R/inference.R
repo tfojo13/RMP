@@ -38,6 +38,7 @@
 #'@return A 4d array indexed[individual, time, test, statistic], where statistic is one of: mean, ci.lower, ci.upper, iq.lower, iq.upper
 #'
 #'@export
+#'@import R2jags
 make.measurement.predictions <- function(dm,
                                          observations, observed.times,
                                          predict.times,

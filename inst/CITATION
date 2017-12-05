@@ -1,0 +1,13 @@
+structure(list(fojo2017precision = structure(list(title = "A precision medicine approach for psychiatric disease based on repeated symptom scores",
+    author = structure(list(structure(list(given = c("Anthony",
+    "T"), family = "Fojo", role = NULL, email = NULL, comment = NULL), .Names = c("given",
+    "family", "role", "email", "comment")), structure(list(given = c("Katherine",
+    "L"), family = "Musliner", role = NULL, email = NULL, comment = NULL), .Names = c("given",
+    "family", "role", "email", "comment")), structure(list(given = c("Peter",
+    "P"), family = "Zandi", role = NULL, email = NULL, comment = NULL), .Names = c("given",
+    "family", "role", "email", "comment")), structure(list(given = c("Scott",
+    "L"), family = "Zeger", role = NULL, email = NULL, comment = NULL), .Names = c("given",
+    "family", "role", "email", "comment"))), class = "person"),
+    journal = "Journal of Psychiatric Research", volume = "95",
+    pages = "147--155", year = "2017", publisher = "Elsevier"), .Names = c("title",
+"author", "journal", "volume", "pages", "year", "publisher"), bibtype = "Article", key = "fojo2017precision")), class = "bibentry", strings = structure(character(0), .Names = character(0)), .Names = "fojo2017precision")
